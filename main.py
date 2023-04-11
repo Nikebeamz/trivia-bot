@@ -261,4 +261,10 @@ async def close(ctx):
 		con.close()
 
 
+@bot.command(name="reset")
+async def reset(ctx):
+	cur.execute(f"UPDATE users SET correct = 0 WHERE id={ctx.message.author.id}")
+	cur.execute(f"UPDATE users SET total = 0 WHERE id={ctx.message.author.id}")
+	con.commit()
+		
 bot.run(TOKEN)
